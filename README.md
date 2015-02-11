@@ -34,4 +34,20 @@ Each group object will have the following properties:
 - `value` The value for the property that you grouped the items by
 - `items` All of the objects with the matching value for that property
 
+You can then use this in your templates to do cool things like:
+
+```handlebars
+<h1>Cars grouped by color</h1>
+
+{{#each group in carsByColor}}
+  <h3>Cars that have {{group.property}} {{group.value}}</h3>
+
+  <ul>
+    {{#each car in group.items}}
+      <li>{{car.name}}</li>
+    {{/each}}
+  </ul>
+{{/each}}
+```
+
 **There is also an example in [test/dummy](tests/dummy).**
