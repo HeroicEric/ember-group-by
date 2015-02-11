@@ -1,25 +1,37 @@
-# Ember-group-by
+# ember-group-by
 
-This README outlines the details of collaborating on this Ember addon.
+ember-group-by provides a computed property macro for grouping objects by a
+given property.
 
 ## Installation
 
-* `git clone` this repository
-* `npm install`
-* `bower install`
+`ember install:addon ember-group-by`
 
-## Running
+## Usage
 
-* `ember server`
-* Visit your app at http://localhost:4200.
+```javascript
+import Ember from 'ember';
+import groupBy from 'ember-group-by';
 
-## Running Tests
+export default Ember.Controller.extend({
+  carsByColor: groupBy('model', 'color')
+});
+```
 
-* `ember test`
-* `ember test --server`
+This will return an array of POJOs with the following properties:
 
-## Building
+```javascript
+[
+  { property: 'color', value: 'red', items: [car1, car2] },
+  { property: 'color', value: 'blue', items: [car3, car4] },
+  { property: 'color', value: 'green', items: [car5] }
+]
+```
 
-* `ember build`
+Each group object will have the following properties:
 
-For more information on using ember-cli, visit [http://www.ember-cli.com/](http://www.ember-cli.com/).
+- `property` The name of the property that you grouped the items by
+- `value` The value for the property that you grouped the items by
+- `items` All of the objects with the matching value for that property
+
+**There is also an example in [test/dummy](tests/dummy).**
