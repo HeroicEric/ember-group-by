@@ -1,7 +1,7 @@
 {
   "name": "ember-group-by",
   "version": "0.0.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "description": "An Ember.js computed property macro for grouping objects by a given property.",
   "directories": {
     "doc": "doc",
     "test": "tests"
@@ -11,7 +11,7 @@
     "build": "ember build",
     "test": "ember test"
   },
-  "repository": "",
+  "repository": "https://github.com/HeroicEric/ember-group-by",
   "engines": {
     "node": ">= 0.10.0"
   },
