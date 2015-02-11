@@ -1,0 +1,11 @@
+<h1>Cars grouped by color</h1>
+
+{{#each group in carsByColor}}
+  <h3>Cars that have {{group.property}} {{group.value}}</h3>
+
+  <ul>
+    {{#each car in group.items}}
+      <li>{{car.name}}</li>
+    {{/each}}
+  </ul>
+{{/each}}
