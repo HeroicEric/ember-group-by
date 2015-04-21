@@ -1,5 +1,6 @@
 import Ember from 'ember';
 
+var A = Ember.A;
 var computed = Ember.computed;
 var get = Ember.get;
 var isPresent = Ember.isPresent;
@@ -8,7 +9,7 @@ export default function groupBy(collection, property) {
   var dependentKey = collection + '.@each.' + property;
 
   return computed(dependentKey, function() {
-    var groups = [];
+    var groups = new A();
     var items = get(this, collection);
 
     items.forEach(function(item) {
