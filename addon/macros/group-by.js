@@ -5,7 +5,15 @@ var computed = Ember.computed;
 var get = Ember.get;
 var isPresent = Ember.isPresent;
 
-export default function groupBy(collection, property) {
+// Standard group object is an Ember object, so we can
+// use get() and set() for properties
+var groupedList = Ember.Object.extend({
+  property: "",
+  items: [],
+  value: ""
+});
+
+export default function groupBy(collection, property, additionalProperties) {
   var dependentKey = collection + '.@each.' + property;
 
   return computed(dependentKey, function() {
@@ -19,7 +27,13 @@ export default function groupBy(collection, property) {
       if (isPresent(group)) {
         get(group, 'items').push(item);
       } else {
-        group = { property: property, value: value, items: [item] };
+        group = groupedList.create({
+          property: property,
+          value: value,
+          items: [item]
+        });
+        // Merge the additional properties in the group object
+        Ember.merge(group, additionalProperties);
         groups.push(group);
       }
     });
