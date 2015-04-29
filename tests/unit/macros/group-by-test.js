@@ -22,13 +22,55 @@ module('Unit - groupBy', {
 });
 
 test('it groups cars by color', function(assert) {
-  assert.expect(1);
+  assert.expect(9);
   var redGroup = { property: 'color', value: 'red', items: [car1, car2] };
   var blueGroup = { property: 'color', value: 'blue', items: [car3, car4] };
   var greenGroup = { property: 'color', value: 'green', items: [car5] };
 
   var result = dealership.get('carsGroupedByColor');
   var expected = [redGroup, blueGroup, greenGroup];
+  assert.equal(result.objectAt(0).property, expected[0].property);
+  assert.equal(result.objectAt(0).value, expected[0].value);
+  assert.deepEqual(result.objectAt(0).items, expected[0].items);
 
-  assert.deepEqual(result, expected);
+  assert.equal(result.objectAt(1).property, expected[1].property);
+  assert.equal(result.objectAt(1).value, expected[1].value);
+  assert.deepEqual(result.objectAt(1).items, expected[1].items);
+
+  assert.equal(result.objectAt(2).property, expected[2].property);
+  assert.equal(result.objectAt(2).value, expected[2].value);
+  assert.deepEqual(result.objectAt(2).items, expected[2].items);
+});
+
+test('it applies custom attributes to the group', function(assert) {
+  assert.expect(12);
+  dealership = Ember.Object.extend({
+    cars: cars,
+    carsGroupedByColor: groupBy('cars', 'color', { originalColor: true })
+  }).create();
+
+  var redGroup = { property: 'color', value: 'red', items: [car1, car2], originalColor: true };
+  var blueGroup = { property: 'color', value: 'blue', items: [car3, car4], originalColor: true };
+  var greenGroup = { property: 'color', value: 'green', items: [car5], originalColor: false };
+
+  var greenCars = dealership.get('carsGroupedByColor').objectAt(2);
+  greenCars.set('originalColor', false);
+
+  var result = dealership.get('carsGroupedByColor');
+  var expected = [redGroup, blueGroup, greenGroup];
+
+  assert.equal(result.objectAt(0).property, expected[0].property);
+  assert.equal(result.objectAt(0).value, expected[0].value);
+  assert.equal(result.objectAt(0).originalColor, expected[0].originalColor);
+  assert.deepEqual(result.objectAt(0).items, expected[0].items);
+
+  assert.equal(result.objectAt(1).property, expected[1].property);
+  assert.equal(result.objectAt(1).value, expected[1].value);
+  assert.equal(result.objectAt(1).originalColor, expected[1].originalColor);
+  assert.deepEqual(result.objectAt(1).items, expected[1].items);
+
+  assert.equal(result.objectAt(2).property, expected[2].property);
+  assert.equal(result.objectAt(2).value, expected[2].value);
+  assert.equal(result.objectAt(2).originalColor, expected[2].originalColor);
+  assert.deepEqual(result.objectAt(2).items, expected[2].items);
 });
