@@ -29,17 +29,17 @@ test('it groups cars by color', function(assert) {
 
   var result = dealership.get('carsGroupedByColor');
   var expected = [redGroup, blueGroup, greenGroup];
-  assert.equal(result.objectAt(0).property, expected[0].property);
-  assert.equal(result.objectAt(0).value, expected[0].value);
-  assert.deepEqual(result.objectAt(0).items, expected[0].items);
+  assert.equal(result[0].property, expected[0].property);
+  assert.equal(result[0].value, expected[0].value);
+  assert.deepEqual(result[0].items, expected[0].items);
 
-  assert.equal(result.objectAt(1).property, expected[1].property);
-  assert.equal(result.objectAt(1).value, expected[1].value);
-  assert.deepEqual(result.objectAt(1).items, expected[1].items);
+  assert.equal(result[1].property, expected[1].property);
+  assert.equal(result[1].value, expected[1].value);
+  assert.deepEqual(result[1].items, expected[1].items);
 
-  assert.equal(result.objectAt(2).property, expected[2].property);
-  assert.equal(result.objectAt(2).value, expected[2].value);
-  assert.deepEqual(result.objectAt(2).items, expected[2].items);
+  assert.equal(result[2].property, expected[2].property);
+  assert.equal(result[2].value, expected[2].value);
+  assert.deepEqual(result[2].items, expected[2].items);
 });
 
 test('it applies custom attributes to the group', function(assert) {
@@ -59,18 +59,18 @@ test('it applies custom attributes to the group', function(assert) {
   var result = dealership.get('carsGroupedByColor');
   var expected = [redGroup, blueGroup, greenGroup];
 
-  assert.equal(result.objectAt(0).property, expected[0].property);
-  assert.equal(result.objectAt(0).value, expected[0].value);
-  assert.equal(result.objectAt(0).originalColor, expected[0].originalColor);
-  assert.deepEqual(result.objectAt(0).items, expected[0].items);
+  assert.equal(result[0].property, expected[0].property);
+  assert.equal(result[0].value, expected[0].value);
+  assert.equal(result[0].originalColor, expected[0].originalColor);
+  assert.deepEqual(result[0].items, expected[0].items);
 
-  assert.equal(result.objectAt(1).property, expected[1].property);
-  assert.equal(result.objectAt(1).value, expected[1].value);
-  assert.equal(result.objectAt(1).originalColor, expected[1].originalColor);
-  assert.deepEqual(result.objectAt(1).items, expected[1].items);
+  assert.equal(result[1].property, expected[1].property);
+  assert.equal(result[1].value, expected[1].value);
+  assert.equal(result[1].originalColor, expected[1].originalColor);
+  assert.deepEqual(result[1].items, expected[1].items);
 
-  assert.equal(result.objectAt(2).property, expected[2].property);
-  assert.equal(result.objectAt(2).value, expected[2].value);
-  assert.equal(result.objectAt(2).originalColor, expected[2].originalColor);
-  assert.deepEqual(result.objectAt(2).items, expected[2].items);
+  assert.equal(result[2].property, expected[2].property);
+  assert.equal(result[2].value, expected[2].value);
+  assert.equal(result[2].originalColor, expected[2].originalColor);
+  assert.deepEqual(result[2].items, expected[2].items);
 });
