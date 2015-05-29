@@ -74,3 +74,45 @@ test('it applies custom attributes to the group', function(assert) {
   assert.equal(result[2].originalColor, expected[2].originalColor);
   assert.deepEqual(result[2].items, expected[2].items);
 });
+
+test('it applies custom calculated properties to the group', function(assert) {
+  assert.expect(15);
+  dealership = Ember.Object.extend({
+    cars: cars,
+    carsGroupedByColor: groupBy('cars', 'color', {
+
+      isPrimaryColor: function() {
+        return (this.get('value') === 'green' || this.get('value') === 'red');
+      },
+      isBigGroup: function() {
+        return (this.get('items').length > 1);
+      }
+    })
+  }).create();
+
+  var redGroup = { property: 'color', value: 'red', items: [car1, car2], isPrimaryColor: true, isBigGroup: true };
+  var blueGroup = { property: 'color', value: 'blue', items: [car3, car4], isPrimaryColor: false, isBigGroup: true };
+  var greenGroup = { property: 'color', value: 'green', items: [car5], isPrimaryColor: true, isBigGroup: false };
+
+  var result = dealership.get('carsGroupedByColor');
+  var expected = [redGroup, blueGroup, greenGroup];
+
+  assert.equal(result[0].property, expected[0].property);
+  assert.equal(result[0].value, expected[0].value);
+  assert.equal(result[0].isPrimaryColor(), expected[0].isPrimaryColor);
+  assert.equal(result[0].isBigGroup(), expected[0].isBigGroup);
+  assert.deepEqual(result[0].items, expected[0].items);
+
+  assert.equal(result[1].property, expected[1].property);
+  assert.equal(result[1].value, expected[1].value);
+  assert.equal(result[1].isPrimaryColor(), expected[1].isPrimaryColor);
+  assert.equal(result[1].isBigGroup(), expected[1].isBigGroup);
+  assert.deepEqual(result[1].items, expected[1].items);
+
+  assert.equal(result[2].property, expected[2].property);
+  assert.equal(result[2].value, expected[2].value);
+  assert.equal(result[2].isPrimaryColor(), expected[2].isPrimaryColor);
+  assert.equal(result[2].isBigGroup(), expected[2].isBigGroup);
+  assert.deepEqual(result[2].items, expected[2].items);
+});
+
