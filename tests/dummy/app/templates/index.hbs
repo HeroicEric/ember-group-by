@@ -1,10 +1,12 @@
 <h1>Cars grouped by color</h1>
 
-{{#each group in carsByColor}}
-  <h3>Cars that have {{group.property}} {{group.value}}</h3>
-
+{{#each carsByColor as |group|}}
+  <h3>Cars that have {{group.property}} {{group.value}}, that once were {{group.originalColor}}</h3>
+  {{#if group.isBigGroup}}
+    This will be a long list!
+  {{/if}}
   <ul>
-    {{#each car in group.items}}
+    {{#each group.items as |car|}}
       <li>{{car.name}}</li>
     {{/each}}
   </ul>
