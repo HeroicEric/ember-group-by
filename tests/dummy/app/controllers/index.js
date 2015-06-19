@@ -6,7 +6,11 @@ export default Ember.Controller.extend({
     originalColor: 'black',
     isBigGroup: function() {
         return this.get('items').length > 2;
-    }
+    },
+    count: Ember.computed.alias('items.length'),
+    firstcolor: function() {
+    	return this.get('items.firstObject.color');
+    }.property()
   })
 });
 
