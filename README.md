@@ -5,7 +5,7 @@ given property.
 
 ## Installation
 
-`ember install:addon ember-group-by`
+`ember install ember-group-by`
 
 ## Usage
 
