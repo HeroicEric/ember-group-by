@@ -39,11 +39,11 @@ You can then use this in your templates to do cool things like:
 ```handlebars
 <h1>Cars grouped by color</h1>
 
-{{#each group in carsByColor}}
+{{#each carsByColor as |group|}}
   <h3>Cars that have {{group.property}} {{group.value}}</h3>
 
   <ul>
-    {{#each car in group.items}}
+    {{#each group.items as |car|}}
       <li>{{car.name}}</li>
     {{/each}}
   </ul>
