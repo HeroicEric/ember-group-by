@@ -50,4 +50,17 @@ You can then use this in your templates to do cool things like:
 {{/each}}
 ```
 
+
+You can also pass additional keys in for the computed property to watch. This
+will cause it to re-compute when any of those keys change.
+
+```javascript
+import Ember from 'ember';
+import groupBy from 'ember-group-by';
+
+export default Ember.Controller.extend({
+  carsByColor: groupBy('model', 'color', { additionalKeysToWatch: ['price', 'name'] })
+});
+
+
 **There is also an example in [test/dummy](tests/dummy).**
