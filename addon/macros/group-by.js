@@ -5,7 +5,7 @@ var computed = Ember.computed;
 var get = Ember.get;
 var isPresent = Ember.isPresent;
 
-export default function groupBy(collection, property) {
+export default function groupBy(collection, property, comparator) {
   var dependentKey = collection + '.@each.' + property;
 
   return computed(dependentKey, function() {
@@ -14,13 +14,20 @@ export default function groupBy(collection, property) {
 
     items.forEach(function(item) {
       var value = get(item, property);
-      var group = groups.findBy('value', value);
-
-      if (isPresent(group)) {
-        get(group, 'items').push(item);
+      var correctGroup;
+      if (comparator) {
+        correctGroup = groups.find(function(group) {
+          return comparator(...[get(group, 'value'), value]);
+        });
       } else {
-        group = { property: property, value: value, items: [item] };
-        groups.push(group);
+        correctGroup = groups.findBy('value', value);
+      }
+
+      if (isPresent(correctGroup)) {
+        get(correctGroup, 'items').push(item);
+      } else {
+        correctGroup = { property: property, value: value, items: [item] };
+        groups.push(correctGroup);
       }
     });
 
