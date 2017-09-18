@@ -51,3 +51,11 @@ You can then use this in your templates to do cool things like:
 ```
 
 **There is also an example in [test/dummy](tests/dummy).**
+
+## Running Tests
+
+* `npm test` (Runs `ember try:each` to test your addon against multiple Ember versions)
+* `ember test`
+* `ember test --server`
+
+For more information on using ember-cli, visit [https://ember-cli.com/](https://ember-cli.com/).
