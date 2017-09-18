@@ -1,4 +1,7 @@
 # ember-group-by
+![Download count all time](https://img.shields.io/npm/dt/ember-group-by.svg) [![Build Status](https://travis-ci.org/HeroicEric/ember-group-by.svg?branch=master)](https://travis-ci.org/HeroicEric/ember-group-by) [![npm version](https://badge.fury.io/js/ember-group-by.svg)](http://badge.fury.io/js/ember-group-by) [![Ember Observer Score](http://emberobserver.com/badges/ember-group-by.svg)](http://emberobserver.com/addons/ember-group-by) [![Dependencies up to date](https://david-dm.org/HeroicEric/ember-group-by.svg)](https://david-dm.org/HeroicEric/ember-group-by)
+
+
 
 ember-group-by provides a computed property macro for grouping objects by a
 given property.
@@ -10,10 +13,10 @@ given property.
 ## Usage
 
 ```javascript
-import Ember from 'ember';
+import Controller from '@ember/controller';
 import groupBy from 'ember-group-by';
 
-export default Ember.Controller.extend({
+export default Controller.extend({
   carsByColor: groupBy('model', 'color')
 });
 ```
