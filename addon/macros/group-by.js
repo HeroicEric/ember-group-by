@@ -1,20 +1,22 @@
 import Ember from 'ember';
 
-var A = Ember.A;
-var computed = Ember.computed;
-var get = Ember.get;
-var isPresent = Ember.isPresent;
+const {
+  A,
+  computed,
+  get,
+  isPresent
+} = Ember;
 
 export default function groupBy(collection, property) {
-  var dependentKey = collection + '.@each.' + property;
+  let dependentKey = collection + '.@each.' + property;
 
   return computed(dependentKey, function() {
-    var groups = new A();
-    var items = get(this, collection);
+    let groups = new A();
+    let items = get(this, collection);
 
     items.forEach(function(item) {
-      var value = get(item, property);
-      var group = groups.findBy('value', value);
+      let value = get(item, property);
+      let group = groups.findBy('value', value);
 
       if (isPresent(group)) {
         get(group, 'items').push(item);
