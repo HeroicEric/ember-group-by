@@ -28,3 +28,23 @@ test('it groups cars by color', function(assert) {
 
   assert.deepEqual(result, expected);
 });
+
+test('it not fails with empty array', function(assert) {
+  dealership = Ember.Object.extend({
+    cars: [],
+    carsGroupedByColor: groupBy('cars', 'color')
+  }).create();
+
+  let result = dealership.get('carsGroupedByColor');
+  assert.deepEqual(result, []);
+});
+
+test('it not fails with null', function(assert) {
+  dealership = Ember.Object.extend({
+    cars: null,
+    carsGroupedByColor: groupBy('cars', 'color')
+  }).create();
+
+  let result = dealership.get('carsGroupedByColor');
+  assert.deepEqual(result, []);
+});
