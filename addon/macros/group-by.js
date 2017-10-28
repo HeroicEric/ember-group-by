@@ -1,11 +1,6 @@
-import Ember from 'ember';
-
-const {
-  A,
-  computed,
-  get,
-  isPresent
-} = Ember;
+import { A } from '@ember/array';
+import { computed, get } from '@ember/object';
+import { isPresent } from '@ember/utils';
 
 export default function groupBy(collection, property) {
   let dependentKey = collection + '.@each.' + property;
