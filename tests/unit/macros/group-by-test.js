@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import EmberObject from '@ember/object';
 import { module, test } from 'qunit';
 import groupBy from 'ember-group-by/macros/group-by';
 
@@ -12,7 +12,7 @@ let car5 = { name: 'Cobra', color: 'green' };
 
 let cars = [car1, car2, car3, car4, car5];
 
-let dealership = Ember.Object.extend({
+let dealership = EmberObject.extend({
   cars: cars,
   carsGroupedByColor: groupBy('cars', 'color')
 }).create();
@@ -30,7 +30,7 @@ test('it groups cars by color', function(assert) {
 });
 
 test('it not fails with empty array', function(assert) {
-  dealership = Ember.Object.extend({
+  dealership = EmberObject.extend({
     cars: [],
     carsGroupedByColor: groupBy('cars', 'color')
   }).create();
@@ -40,7 +40,7 @@ test('it not fails with empty array', function(assert) {
 });
 
 test('it not fails with null', function(assert) {
-  dealership = Ember.Object.extend({
+  dealership = EmberObject.extend({
     cars: null,
     carsGroupedByColor: groupBy('cars', 'color')
   }).create();
