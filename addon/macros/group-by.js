@@ -6,7 +6,7 @@ export default function groupBy(collection, property) {
   let dependentKey = collection + '.@each.' + property;
 
   return computed(dependentKey, function() {
-    let groups = new A();
+    let groups = A();
     let items = get(this, collection);
 
     if (items) {
