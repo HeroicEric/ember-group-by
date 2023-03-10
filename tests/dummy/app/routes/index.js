@@ -1,7 +1,7 @@
-import Ember from 'ember';
+import Route from '@ember/routing/route';
 
-export default Ember.Route.extend({
-  model: function() {
+export default class IndexRoute extends Route {
+  model() {
     var car1 = { name: 'Carrera', color: 'red' };
     var car2 = { name: 'Veyron', color: 'red' };
     var car3 = { name: 'Corvette', color: 'blue' };
@@ -12,4 +12,4 @@ export default Ember.Route.extend({
 
     return cars;
   }
-});
+}

@@ -16,9 +16,10 @@ given property.
 import Controller from '@ember/controller';
 import groupBy from 'ember-group-by';
 
-export default Controller.extend({
-  carsByColor: groupBy('model', 'color')
-});
+export default class IndexController extends Controller {
+  @groupBy('model', 'color')
+  carsByColor;
+}
 ```
 
 This will return an array of POJOs with the following properties:
@@ -42,7 +43,7 @@ You can then use this in your templates to do cool things like:
 ```handlebars
 <h1>Cars grouped by color</h1>
 
-{{#each carsByColor as |group|}}
+{{#each this.carsByColor as |group|}}
   <h3>Cars that have {{group.property}} {{group.value}}</h3>
 
   <ul>
